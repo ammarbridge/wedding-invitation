@@ -1,0 +1,2005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Ammar &amp; Sidra — Royal Wedding Invitation</title>
+  <meta name="description" content="You are cordially invited to celebrate the union of Ammar and Sidra on Sunday, October 11, 2026.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@400;500;600;700;800;900&family=Great+Vibes&family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       1. CSS RESET & LUXURY DESIGN TOKENS
+       ========================================================================== */
+    :root {
+      --bg-dark: #121110;
+      --charcoal: #1A1918;
+      --charcoal-card: #201F1D;
+      --charcoal-border: #2A2825;
+      
+      --gold-dark: #8C6D2B;
+      --gold-primary: #C5A059;
+      --gold-light: #E5C989;
+      --gold-pale: #F3E5C8;
+      --ivory: #FAF6F0;
+      --ivory-muted: rgba(250, 246, 240, 0.75);
+      
+      --gold-gradient: linear-gradient(135deg, #FAF6F0 0%, #E5C989 30%, #C5A059 70%, #997430 100%);
+      --gold-border-gradient: linear-gradient(135deg, rgba(229, 201, 137, 0.8) 0%, rgba(197, 160, 89, 0.3) 50%, rgba(229, 201, 137, 0.8) 100%);
+      --glass-bg: rgba(26, 25, 24, 0.82);
+      
+      --font-heading: 'Cinzel', serif;
+      --font-script: 'Great Vibes', cursive;
+      --font-body: 'Montserrat', sans-serif;
+      --font-arabic: 'Amiri', serif;
+      
+      --ease-luxury: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      background-color: var(--bg-dark);
+      color: var(--ivory);
+      font-family: var(--font-body);
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Ambient Background Texture */
+    body {
+      background: radial-gradient(circle at 50% 30%, #25221F 0%, #151413 60%, #0A0A09 100%);
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+
+    /* Floating Gold Canvas */
+    #gold-particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    /* ==========================================================================
+       2. APP VIEWPORT CONTAINER (Mobile-First Frame)
+       ========================================================================== */
+    .app-viewport {
+      width: 100%;
+      max-width: 440px;
+      min-height: 100vh;
+      position: relative;
+      background: var(--charcoal);
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.85), 0 0 50px rgba(197, 160, 89, 0.12);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    @media (min-width: 500px) {
+      body {
+        padding: 24px 0;
+      }
+      .app-viewport {
+        border-radius: 28px;
+        border: 1px solid rgba(197, 160, 89, 0.28);
+        min-height: 920px;
+      }
+    }
+
+    /* ==========================================================================
+       3. SCREEN 1: INTERACTIVE WAX-SEALED ENVELOPE
+       ========================================================================== */
+    .envelope-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(circle at center, #242220 0%, #121110 80%, #070707 100%);
+      perspective: 1200px;
+      transition: opacity 1s var(--ease-luxury), visibility 1s var(--ease-luxury);
+    }
+
+    .envelope-screen.opened {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .envelope-container {
+      position: relative;
+      width: 90%;
+      max-width: 400px;
+      aspect-ratio: 501 / 698;
+      border-radius: 20px;
+      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.9), 0 0 60px rgba(197, 160, 89, 0.22);
+      transform-style: preserve-3d;
+      cursor: pointer;
+    }
+
+    /* Ambient glow behind envelope */
+    .envelope-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 110%;
+      height: 110%;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(circle, rgba(197, 160, 89, 0.22) 0%, rgba(197, 160, 89, 0) 70%);
+      filter: blur(25px);
+      pointer-events: none;
+      z-index: 1;
+      animation: pulseGlow 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulseGlow {
+      0% { opacity: 0.5; transform: translate(-50%, -50%) scale(0.96); }
+      100% { opacity: 0.95; transform: translate(-50%, -50%) scale(1.05); }
+    }
+
+    /* Envelope Flaps */
+    .envelope-flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: 100% 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      will-change: transform, opacity;
+      transform-style: preserve-3d;
+      backface-visibility: hidden;
+      border-radius: 20px;
+    }
+
+    /* Flap 1: Top Triangular Flap */
+    .flap-top {
+      z-index: 5;
+      background-image: url('assets/envelope_card.png');
+      clip-path: polygon(0 0, 100% 0, 100% 11.5%, 50% 53.6%, 0 11.5%);
+      transform-origin: top center;
+      filter: drop-shadow(0 14px 18px rgba(0, 0, 0, 0.85));
+      transition: transform 1.25s var(--ease-luxury), opacity 1.1s var(--ease-luxury);
+    }
+
+    /* Flap 2: Bottom Flap & Envelope Body */
+    .flap-bottom {
+      z-index: 4;
+      background-image: url('assets/envelope_card.png');
+      clip-path: polygon(0 11.5%, 50% 53.6%, 100% 11.5%, 100% 100%, 0 100%);
+      transform-origin: bottom center;
+      transition: transform 1.25s var(--ease-luxury), opacity 1.1s var(--ease-luxury);
+    }
+
+    /* Opening Animation States */
+    .envelope-container.opening .flap-top {
+      transform: rotateX(110deg) translateY(-40px);
+      opacity: 0;
+    }
+
+    .envelope-container.opening .flap-bottom {
+      transform: rotateX(-90deg) translateY(40px);
+      opacity: 0;
+    }
+
+    /* Embossed Wax Seal Medallion */
+    .wax-seal-wrapper {
+      position: absolute;
+      top: 53.6%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+      width: 110px;
+      height: 110px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.8s var(--ease-luxury), opacity 0.7s var(--ease-luxury);
+    }
+
+    .wax-seal-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 18px rgba(229, 201, 137, 0.4));
+      transition: transform 0.4s var(--ease-luxury), filter 0.4s ease;
+      animation: sealBreathing 3s ease-in-out infinite;
+    }
+
+    .wax-seal-wrapper:hover .wax-seal-img,
+    .wax-seal-wrapper:active .wax-seal-img {
+      transform: scale(1.06);
+      filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 28px rgba(229, 201, 137, 0.75));
+    }
+
+    @keyframes sealBreathing {
+      0%, 100% {
+        transform: scale(1);
+        filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 15px rgba(229, 201, 137, 0.35));
+      }
+      50% {
+        transform: scale(1.04);
+        filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 28px rgba(229, 201, 137, 0.65));
+      }
+    }
+
+    /* Expanding Pulse Rings */
+    .pulse-ring {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 1.5px solid var(--gold-light);
+      pointer-events: none;
+      animation: ripple 2.6s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+      opacity: 0;
+    }
+
+    .pulse-ring:nth-child(2) {
+      animation-delay: 1.1s;
+    }
+
+    @keyframes ripple {
+      0% {
+        transform: scale(0.85);
+        opacity: 0.8;
+      }
+      100% {
+        transform: scale(1.65);
+        opacity: 0;
+      }
+    }
+
+    .envelope-container.opening .wax-seal-wrapper {
+      transform: translate(-50%, -50%) scale(0.5);
+      opacity: 0;
+    }
+
+    /* Tap to Open Caption */
+    .tap-to-open {
+      position: absolute;
+      bottom: -65px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+    }
+
+    .tap-text {
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 5px;
+      background: var(--gold-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: tapPulse 2s ease-in-out infinite;
+      text-transform: uppercase;
+    }
+
+    .tap-subtext {
+      font-size: 0.68rem;
+      letter-spacing: 3px;
+      color: rgba(229, 201, 137, 0.7);
+      text-transform: uppercase;
+      font-weight: 300;
+    }
+
+    @keyframes tapPulse {
+      0%, 100% { opacity: 0.55; transform: translateY(0); }
+      50% { opacity: 1; transform: translateY(-3px); }
+    }
+
+    .envelope-container.opening .tap-to-open {
+      opacity: 0;
+    }
+
+    /* ==========================================================================
+       4. SCREEN 2: REVEALED INVITATION CONTENT
+       ========================================================================== */
+    .invitation-screen {
+      width: 100%;
+      position: relative;
+      z-index: 2;
+      opacity: 0;
+      transform: scale(0.97);
+      transition: opacity 1.3s var(--ease-luxury) 0.3s, transform 1.3s var(--ease-luxury) 0.3s;
+      overflow-y: auto;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .invitation-screen.revealed {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Gold Ornamental Line Elements */
+    .ornament-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin: 20px 0;
+      width: 100%;
+    }
+
+    .ornament-line {
+      height: 1px;
+      flex: 1;
+      background: linear-gradient(90deg, transparent, rgba(197, 160, 89, 0.65), transparent);
+    }
+
+    .ornament-diamond {
+      width: 8px;
+      height: 8px;
+      background: var(--gold-light);
+      transform: rotate(45deg);
+      box-shadow: 0 0 10px rgba(229, 201, 137, 0.8);
+    }
+
+    /* Section 1: Hero Header */
+    .hero-section {
+      position: relative;
+      width: 100%;
+      min-height: 620px;
+      background-image: url('assets/interior_hero.jpg');
+      background-size: cover;
+      background-position: center top;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 50px 24px 44px;
+      text-align: center;
+      box-shadow: inset 0 -40px 60px var(--charcoal);
+    }
+
+    /* Luxury Architectural Scrim */
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        to bottom,
+        rgba(18, 17, 16, 0.25) 0%,
+        rgba(18, 17, 16, 0.45) 45%,
+        rgba(26, 25, 24, 0.88) 82%,
+        var(--charcoal) 100%
+      );
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+
+    .bismillah-text {
+      font-family: var(--font-arabic);
+      font-size: 1.45rem;
+      line-height: 1.8;
+      background: var(--gold-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 12px;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.8));
+    }
+
+    .hero-invitation-prelude {
+      font-family: var(--font-heading);
+      font-size: 0.75rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold-pale);
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .hero-subtitle {
+      font-size: 0.8rem;
+      font-weight: 300;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(250, 246, 240, 0.85);
+      margin-bottom: 18px;
+    }
+
+    .couple-names {
+      font-family: var(--font-script);
+      font-size: 4.4rem;
+      line-height: 1.1;
+      background: var(--gold-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 4px 15px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 25px rgba(197, 160, 89, 0.35));
+      margin-bottom: 14px;
+      padding: 0 10px;
+    }
+
+    .couple-ampersand {
+      font-family: var(--font-heading);
+      font-size: 2.8rem;
+      font-weight: 300;
+      display: inline-block;
+      margin: 0 6px;
+      background: var(--gold-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-announcement {
+      font-size: 0.82rem;
+      font-weight: 400;
+      line-height: 1.6;
+      color: var(--ivory-muted);
+      letter-spacing: 1.5px;
+      max-width: 320px;
+      margin-bottom: 20px;
+    }
+
+    .hero-date-badge {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 12px 28px;
+      border: 1px solid rgba(197, 160, 89, 0.45);
+      border-radius: 40px;
+      background: rgba(26, 25, 24, 0.7);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(197, 160, 89, 0.15);
+    }
+
+    .hero-date-main {
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      color: var(--gold-pale);
+    }
+
+    .hero-date-ethiopian {
+      font-size: 0.76rem;
+      font-weight: 400;
+      letter-spacing: 2px;
+      color: var(--gold-light);
+      margin-top: 3px;
+      opacity: 0.9;
+    }
+
+    /* Section 2: Blessing Section */
+    .blessing-section {
+      padding: 40px 24px 30px;
+      text-align: center;
+      background: var(--charcoal);
+      position: relative;
+    }
+
+    .cartouche-frame {
+      position: relative;
+      padding: 34px 22px;
+      background: linear-gradient(145deg, rgba(35, 33, 31, 0.9) 0%, rgba(24, 23, 22, 0.95) 100%);
+      border: 1px solid rgba(197, 160, 89, 0.35);
+      border-radius: 18px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), inset 0 0 25px rgba(197, 160, 89, 0.08);
+    }
+
+    /* Filigree Corner Brackets */
+    .cartouche-corner {
+      position: absolute;
+      width: 22px;
+      height: 22px;
+      border: 2px solid var(--gold-light);
+      pointer-events: none;
+    }
+    .corner-tl { top: 8px; left: 8px; border-right: none; border-bottom: none; }
+    .corner-tr { top: 8px; right: 8px; border-left: none; border-bottom: none; }
+    .corner-bl { bottom: 8px; left: 8px; border-right: none; border-top: none; }
+    .corner-br { bottom: 8px; right: 8px; border-left: none; border-top: none; }
+
+    .arabic-dua {
+      font-family: var(--font-arabic);
+      font-size: 1.55rem;
+      line-height: 2.1;
+      direction: rtl;
+      background: var(--gold-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 16px;
+      filter: drop-shadow(0 2px 10px rgba(197, 160, 89, 0.25));
+    }
+
+    .blessing-translation {
+      font-size: 0.8rem;
+      font-style: italic;
+      color: rgba(250, 246, 240, 0.7);
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+
+    .blessing-tagline {
+      font-family: var(--font-heading);
+      font-size: 0.82rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      font-weight: 600;
+    }
+
+    /* Section 3: Live Countdown Timer */
+    .countdown-section {
+      padding: 30px 24px 40px;
+      text-align: center;
+      background: var(--charcoal);
+    }
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      background: var(--gold-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .section-subtitle {
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      color: rgba(250, 246, 240, 0.6);
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      max-width: 380px;
+      margin: 0 auto;
+    }
+
+    .countdown-box {
+      background: rgba(30, 29, 27, 0.85);
+      border: 1px solid rgba(197, 160, 89, 0.38);
+      border-radius: 12px;
+      padding: 16px 4px 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(197, 160, 89, 0.06);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .countdown-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--gold-gradient);
+    }
+
+    .countdown-number {
+      font-family: var(--font-heading);
+      font-size: 1.75rem;
+      font-weight: 700;
+      line-height: 1;
+      background: var(--gold-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 6px;
+    }
+
+    .countdown-label {
+      font-size: 0.6rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(250, 246, 240, 0.7);
+      font-weight: 500;
+    }
+
+    /* Section 4: Event Timeline */
+    .timeline-section {
+      padding: 40px 24px;
+      background: linear-gradient(180deg, var(--charcoal) 0%, #151413 100%);
+      position: relative;
+    }
+
+    .timeline-wrapper {
+      position: relative;
+      margin-top: 30px;
+      padding-left: 32px;
+    }
+
+    /* Vertical glowing line */
+    .timeline-wrapper::before {
+      content: '';
+      position: absolute;
+      left: 12px;
+      top: 10px;
+      bottom: 20px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--gold-light), var(--gold-dark), rgba(197, 160, 89, 0.2));
+      box-shadow: 0 0 10px rgba(197, 160, 89, 0.4);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 34px;
+    }
+
+    .timeline-item:last-child {
+      margin-bottom: 10px;
+    }
+
+    /* Golden Node */
+    .timeline-node {
+      position: absolute;
+      left: -32px;
+      top: 2px;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #1A1918;
+      border: 2px solid var(--gold-light);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 0 15px rgba(229, 201, 137, 0.5);
+      z-index: 2;
+    }
+
+    .timeline-node-inner {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--gold-light);
+    }
+
+    .timeline-time-badge {
+      display: inline-block;
+      font-family: var(--font-heading);
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      color: var(--gold-light);
+      margin-bottom: 6px;
+      background: rgba(197, 160, 89, 0.12);
+      border: 1px solid rgba(197, 160, 89, 0.3);
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+
+    .timeline-title {
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      letter-spacing: 1px;
+      color: var(--ivory);
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .timeline-desc {
+      font-size: 0.78rem;
+      line-height: 1.5;
+      color: var(--ivory-muted);
+      font-weight: 300;
+    }
+
+    /* Section 5: Venue Details */
+    .venue-section {
+      padding: 35px 24px;
+      background: var(--charcoal);
+      text-align: center;
+    }
+
+    .venue-card {
+      background: linear-gradient(160deg, rgba(35, 33, 30, 0.9) 0%, rgba(22, 21, 20, 0.95) 100%);
+      border: 1px solid rgba(197, 160, 89, 0.35);
+      border-radius: 18px;
+      padding: 30px 20px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .venue-icon-box {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      border: 1.5px solid var(--gold-light);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 18px;
+      background: rgba(197, 160, 89, 0.1);
+      box-shadow: 0 0 20px rgba(197, 160, 89, 0.25);
+    }
+
+    .venue-icon-box svg {
+      width: 24px;
+      height: 24px;
+      fill: var(--gold-light);
+    }
+
+    .venue-name {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      color: var(--gold-pale);
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+      font-weight: 600;
+    }
+
+    .venue-address {
+      font-size: 0.82rem;
+      color: var(--ivory-muted);
+      margin-bottom: 24px;
+      line-height: 1.5;
+      max-width: 280px;
+    }
+
+    .venue-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 100%;
+      max-width: 280px;
+    }
+
+    .btn-gold {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      padding: 14px 22px;
+      background: var(--gold-gradient);
+      color: #121110;
+      border: none;
+      border-radius: 30px;
+      font-family: var(--font-heading);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 0 8px 25px rgba(197, 160, 89, 0.35);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .btn-gold:hover, .btn-gold:active {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(197, 160, 89, 0.55);
+    }
+
+    .btn-outline-gold {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+      padding: 12px 20px;
+      background: transparent;
+      color: var(--gold-light);
+      border: 1px solid rgba(197, 160, 89, 0.5);
+      border-radius: 30px;
+      font-family: var(--font-heading);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.3s ease, border-color 0.3s ease;
+    }
+
+    .btn-outline-gold:hover {
+      background: rgba(197, 160, 89, 0.12);
+      border-color: var(--gold-light);
+    }
+
+    /* Section 6: RSVP Calling Section */
+    .rsvp-cta-section {
+      padding: 40px 24px 60px;
+      text-align: center;
+      background: linear-gradient(180deg, var(--charcoal) 0%, #11100F 100%);
+      position: relative;
+    }
+
+    .rsvp-card {
+      background: linear-gradient(145deg, rgba(38, 35, 32, 0.8) 0%, rgba(20, 19, 18, 0.9) 100%);
+      border: 1px solid rgba(197, 160, 89, 0.4);
+      border-radius: 20px;
+      padding: 36px 20px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+    }
+
+    .rsvp-date-note {
+      font-size: 0.76rem;
+      letter-spacing: 2px;
+      color: var(--gold-light);
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+
+    .rsvp-button-pulse {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+      max-width: 290px;
+    }
+
+    /* Footer */
+    .invitation-footer {
+      padding: 24px 20px 80px;
+      text-align: center;
+      background: #0E0D0D;
+      border-top: 1px solid rgba(197, 160, 89, 0.15);
+    }
+
+    .footer-monogram {
+      font-family: var(--font-heading);
+      font-size: 1.4rem;
+      letter-spacing: 6px;
+      color: var(--gold-light);
+      margin-bottom: 8px;
+    }
+
+    .footer-text {
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      color: rgba(250, 246, 240, 0.4);
+      text-transform: uppercase;
+    }
+
+    /* ==========================================================================
+       5. INTERACTIVE RSVP MODAL (Glassmorphism)
+       ========================================================================== */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(10, 9, 8, 0.85);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      z-index: 200;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-card {
+      width: 100%;
+      max-width: 420px;
+      background: linear-gradient(150deg, rgba(35, 33, 30, 0.95) 0%, rgba(20, 19, 18, 0.98) 100%);
+      border: 1px solid rgba(197, 160, 89, 0.45);
+      border-radius: 24px;
+      padding: 32px 24px 28px;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.9), 0 0 40px rgba(197, 160, 89, 0.18);
+      position: relative;
+      transform: scale(0.92) translateY(20px);
+      transition: transform 0.4s var(--ease-luxury);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .modal-overlay.active .modal-card {
+      transform: scale(1) translateY(0);
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      width: 36px;
+      height: 36px;
+      background: rgba(197, 160, 89, 0.12);
+      border: 1px solid rgba(197, 160, 89, 0.3);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--gold-light);
+      cursor: pointer;
+      transition: background 0.25s, transform 0.25s;
+    }
+
+    .modal-close-btn:hover {
+      background: rgba(197, 160, 89, 0.25);
+      transform: rotate(90deg);
+    }
+
+    .modal-header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .modal-title {
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      letter-spacing: 2px;
+      color: var(--gold-pale);
+      margin-bottom: 6px;
+    }
+
+    .modal-subtitle {
+      font-size: 0.75rem;
+      color: var(--ivory-muted);
+      letter-spacing: 1px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+      text-align: left;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 8px;
+    }
+
+    .form-input, .form-textarea {
+      width: 100%;
+      padding: 13px 16px;
+      background: rgba(15, 14, 13, 0.85);
+      border: 1px solid rgba(197, 160, 89, 0.35);
+      border-radius: 12px;
+      color: var(--ivory);
+      font-family: var(--font-body);
+      font-size: 0.88rem;
+      outline: none;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .form-input:focus, .form-textarea:focus {
+      border-color: var(--gold-light);
+      box-shadow: 0 0 15px rgba(229, 201, 137, 0.25);
+    }
+
+    /* Attendance Radio Pills */
+    .attendance-selector {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .radio-pill {
+      position: relative;
+    }
+
+    .radio-pill input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .radio-pill-label {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 12px 8px;
+      border: 1px solid rgba(197, 160, 89, 0.3);
+      border-radius: 12px;
+      background: rgba(18, 17, 16, 0.6);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      height: 100%;
+    }
+
+    .radio-pill-title {
+      font-family: var(--font-heading);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: var(--ivory);
+      margin-bottom: 3px;
+    }
+
+    .radio-pill-sub {
+      font-size: 0.65rem;
+      color: var(--gold-light);
+    }
+
+    .radio-pill input[type="radio"]:checked + .radio-pill-label {
+      border-color: var(--gold-light);
+      background: rgba(197, 160, 89, 0.18);
+      box-shadow: 0 0 15px rgba(197, 160, 89, 0.25);
+    }
+
+    /* Guest Counter */
+    .guest-counter-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .counter-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid rgba(197, 160, 89, 0.4);
+      background: rgba(30, 28, 26, 0.8);
+      color: var(--gold-light);
+      font-size: 1.2rem;
+      font-weight: 600;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .counter-btn:hover {
+      background: rgba(197, 160, 89, 0.2);
+    }
+
+    .counter-val {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--gold-pale);
+      min-width: 32px;
+      text-align: center;
+    }
+
+    /* Submission Success Card */
+    .rsvp-success-card {
+      display: none;
+      text-align: center;
+      padding: 20px 10px;
+    }
+
+    .success-icon-wrap {
+      width: 70px;
+      height: 70px;
+      margin: 0 auto 20px;
+      border-radius: 50%;
+      border: 2px solid var(--gold-light);
+      background: rgba(197, 160, 89, 0.15);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 0 25px rgba(229, 201, 137, 0.4);
+    }
+
+    .success-icon-wrap svg {
+      width: 34px;
+      height: 34px;
+      stroke: var(--gold-light);
+    }
+
+    /* ==========================================================================
+       6. FLOATING MUSIC CONTROLLER (Persistent Bottom-Right)
+       ========================================================================== */
+    .music-controller {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 150;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .music-toggle-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #242220 0%, #151413 100%);
+      border: 1.5px solid var(--gold-light);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7), 0 0 15px rgba(197, 160, 89, 0.35);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      outline: none;
+    }
+
+    .music-toggle-btn:hover {
+      transform: scale(1.08);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.8), 0 0 25px rgba(197, 160, 89, 0.6);
+    }
+
+    /* Audio Equalizer Bars */
+    .equalizer-bars {
+      display: flex;
+      align-items: flex-end;
+      gap: 3px;
+      height: 18px;
+    }
+
+    .eq-bar {
+      width: 3px;
+      background: var(--gold-gradient);
+      border-radius: 2px;
+      height: 6px;
+      transition: height 0.2s ease;
+    }
+
+    .music-toggle-btn.playing .eq-bar:nth-child(1) {
+      animation: eqAnimation1 1.1s ease-in-out infinite alternate;
+    }
+    .music-toggle-btn.playing .eq-bar:nth-child(2) {
+      animation: eqAnimation2 0.8s ease-in-out infinite alternate;
+    }
+    .music-toggle-btn.playing .eq-bar:nth-child(3) {
+      animation: eqAnimation3 1.3s ease-in-out infinite alternate;
+    }
+    .music-toggle-btn.playing .eq-bar:nth-child(4) {
+      animation: eqAnimation4 0.9s ease-in-out infinite alternate;
+    }
+
+    @keyframes eqAnimation1 { 0% { height: 4px; } 100% { height: 18px; } }
+    @keyframes eqAnimation2 { 0% { height: 16px; } 100% { height: 5px; } }
+    @keyframes eqAnimation3 { 0% { height: 7px; } 100% { height: 17px; } }
+    @keyframes eqAnimation4 { 0% { height: 15px; } 100% { height: 6px; } }
+
+    /* Sound muted icon */
+    .music-toggle-btn .music-off-icon {
+      display: none;
+      width: 20px;
+      height: 20px;
+      fill: var(--gold-light);
+    }
+
+    .music-toggle-btn.muted .equalizer-bars {
+      display: none;
+    }
+
+    .music-toggle-btn.muted .music-off-icon {
+      display: block;
+    }
+
+    .music-tooltip {
+      background: rgba(26, 25, 24, 0.88);
+      border: 1px solid rgba(197, 160, 89, 0.35);
+      color: var(--gold-light);
+      font-size: 0.7rem;
+      letter-spacing: 1px;
+      padding: 6px 12px;
+      border-radius: 20px;
+      white-space: nowrap;
+      pointer-events: none;
+      opacity: 0;
+      transform: translateX(10px);
+      transition: opacity 0.3s, transform 0.3s;
+      font-weight: 500;
+    }
+
+    .music-controller:hover .music-tooltip {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating 60fps Gold Dust Canvas -->
+  <canvas id="gold-particles"></canvas>
+
+  <!-- Background Audio Soundtrack -->
+  <audio id="wedding-audio" loop preload="auto">
+    <source src="assets/audio.mp3" type="audio/mpeg">
+    <source src="Before_the_First_Light.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Main Mobile-First Application Viewport -->
+  <main class="app-viewport">
+
+    <!-- ====================================================================
+         SCREEN 1: THE WAX-SEALED GATEFOLD ENVELOPE
+         ==================================================================== -->
+    <section class="envelope-screen" id="envelope-screen" aria-label="Interactive Envelope">
+      <div class="envelope-container" id="envelope-container">
+        
+        <!-- Ambient radial glow behind the envelope -->
+        <div class="envelope-glow"></div>
+
+        <!-- Flap 1: Top Triangular Gatefold Flap with Gold Filigree -->
+        <div class="envelope-flap flap-top" id="flap-top"></div>
+
+        <!-- Flap 2: Bottom Gatefold Flap with Gold Filigree -->
+        <div class="envelope-flap flap-bottom" id="flap-bottom"></div>
+
+        <!-- Embossed Wax Seal Medallion with "AS" Monogram -->
+        <div class="wax-seal-wrapper" id="wax-seal" role="button" tabindex="0" aria-label="Open wedding invitation">
+          <div class="pulse-ring"></div>
+          <div class="pulse-ring"></div>
+          <img src="assets/seal.png" alt="Ammar and Sidra Wax Seal Monogram" class="wax-seal-img" id="wax-seal-img">
+        </div>
+
+        <!-- Pulsing Tap To Open Caption -->
+        <div class="tap-to-open">
+          <span class="tap-text">Tap to Open</span>
+          <span class="tap-subtext">Ammar &amp; Sidra</span>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ====================================================================
+         SCREEN 2: REVEALED INVITATION CONTENT
+         ==================================================================== -->
+    <article class="invitation-screen" id="invitation-screen">
+
+      <!-- 1. Hero Header with Moorish Courtyard & Calligraphy -->
+      <header class="hero-section">
+        <div class="hero-overlay"></div>
+        
+        <div class="hero-content">
+          <div class="bismillah-text">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+          <div class="hero-invitation-prelude">The Wedding Celebration of</div>
+          
+          <h1 class="couple-names">
+            Ammar <span class="couple-ampersand">&amp;</span> Sidra
+          </h1>
+          
+          <p class="hero-subtitle">Together with their families</p>
+          
+          <p class="hero-announcement">
+            Cordially invite you to share in the joy and blessings of their wedding union
+          </p>
+
+          <div class="hero-date-badge">
+            <span class="hero-date-main">Sunday, October 11, 2026</span>
+            <span class="hero-date-ethiopian">Tikimt 1, 2019 E.C.</span>
+          </div>
+        </div>
+      </header>
+
+
+      <!-- 2. Sacred Blessing & Dua Section -->
+      <section class="blessing-section" aria-label="Sacred Blessing">
+        <div class="cartouche-frame">
+          <div class="cartouche-corner corner-tl"></div>
+          <div class="cartouche-corner corner-tr"></div>
+          <div class="cartouche-corner corner-bl"></div>
+          <div class="cartouche-corner corner-br"></div>
+
+          <div class="arabic-dua">
+            بَارَكَ اللَّهُ لَكُمَا وَبَارَكَ عَلَيْكُمَا وَجَمَعَ بَيْنَكُمَا فِي الْخَيْرِ
+          </div>
+
+          <p class="blessing-translation">
+            "May Allah bless you both, shower His blessings upon you, and unite you together in goodness."
+          </p>
+
+          <div class="ornament-divider">
+            <span class="ornament-line"></span>
+            <span class="ornament-diamond"></span>
+            <span class="ornament-line"></span>
+          </div>
+
+          <div class="blessing-tagline">
+            Two Hearts &bull; One Journey &bull; Forever Together
+          </div>
+        </div>
+      </section>
+
+
+      <!-- 3. Live Countdown Timer Section -->
+      <section class="countdown-section" aria-label="Countdown to Wedding">
+        <h2 class="section-title">The Grand Day</h2>
+        <p class="section-subtitle">Counting Down Every Moment</p>
+
+        <div class="countdown-grid">
+          <div class="countdown-box">
+            <span class="countdown-number" id="cd-days">--</span>
+            <span class="countdown-label">Days</span>
+          </div>
+          <div class="countdown-box">
+            <span class="countdown-number" id="cd-hours">--</span>
+            <span class="countdown-label">Hours</span>
+          </div>
+          <div class="countdown-box">
+            <span class="countdown-number" id="cd-minutes">--</span>
+            <span class="countdown-label">Minutes</span>
+          </div>
+          <div class="countdown-box">
+            <span class="countdown-number" id="cd-seconds">--</span>
+            <span class="countdown-label">Seconds</span>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- 4. Event Timeline ("Chronologie de l'Événement") -->
+      <section class="timeline-section" aria-label="Event Timeline">
+        <div style="text-align: center;">
+          <h2 class="section-title">Chronologie de l'Événement</h2>
+          <p class="section-subtitle">Order of Celebrations</p>
+        </div>
+
+        <div class="timeline-wrapper">
+          
+          <!-- Event 1: Welcome -->
+          <div class="timeline-item">
+            <div class="timeline-node">
+              <div class="timeline-node-inner"></div>
+            </div>
+            <span class="timeline-time-badge">16:00</span>
+            <h3 class="timeline-title">Welcome Reception</h3>
+            <p class="timeline-desc">
+              Welcoming honored guests with warm hospitality, traditional aromas, chilled refreshments, and ambient live melodies.
+            </p>
+          </div>
+
+          <!-- Event 2: Nikah Ceremony -->
+          <div class="timeline-item">
+            <div class="timeline-node">
+              <div class="timeline-node-inner"></div>
+            </div>
+            <span class="timeline-time-badge">17:00</span>
+            <h3 class="timeline-title">Nikah Ceremony &amp; Vows</h3>
+            <p class="timeline-desc">
+              The sacred matrimonial solemnization, exchange of earnest vows, and shared congregational supplications.
+            </p>
+          </div>
+
+          <!-- Event 3: Dinner & Banquet -->
+          <div class="timeline-item">
+            <div class="timeline-node">
+              <div class="timeline-node-inner"></div>
+            </div>
+            <span class="timeline-time-badge">19:00</span>
+            <h3 class="timeline-title">Dinner &amp; Banquet</h3>
+            <p class="timeline-desc">
+              An opulent royal dinner banquet featuring exquisite multi-course delicacies, celebratory toasts, and heartfelt words.
+            </p>
+          </div>
+
+          <!-- Event 4: Celebration & Party -->
+          <div class="timeline-item">
+            <div class="timeline-node">
+              <div class="timeline-node-inner"></div>
+            </div>
+            <span class="timeline-time-badge">20:30</span>
+            <h3 class="timeline-title">Celebration &amp; Party</h3>
+            <p class="timeline-desc">
+              Joyous music, jubilant dancing, sweet dessert confections, and unforgettable memories honoring Ammar &amp; Sidra.
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+
+      <!-- 5. Venue Details ("Lieu") -->
+      <section class="venue-section" aria-label="Venue Location">
+        <div style="text-align: center; margin-bottom: 24px;">
+          <h2 class="section-title">Lieu de Célébration</h2>
+          <p class="section-subtitle">The Destination</p>
+        </div>
+
+        <div class="venue-card">
+          <div class="venue-icon-box">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+            </svg>
+          </div>
+
+          <h3 class="venue-name">Hilltop Grand Hall</h3>
+          <p class="venue-address">
+            Front of Hilltop School, Ashawa Meda
+          </p>
+
+          <div class="venue-actions">
+            <!-- Google Maps Directions Link -->
+            <a href="https://www.google.com/maps/search/?api=1&query=Front+of+Hilltop+School,+Ashawa+Meda" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               class="btn-gold" 
+               id="btn-directions">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M21.71 11.29l-9-9a1 1 0 0 0-1.42 0l-9 9a1 1 0 0 0 0 1.42l9 9a1 1 0 0 0 1.42 0l9-9a1 1 0 0 0 0-1.42zM14 14.5V12h-4v3H8v-4a1 1 0 0 1 1-1h5V7.5l3.5 3.5-3.5 3.5z"/>
+              </svg>
+              Get Directions
+            </a>
+
+            <!-- Add to Calendar (.ics download) -->
+            <button class="btn-outline-gold" id="btn-add-calendar">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2zm-7 5h5v5h-5z"/>
+              </svg>
+              Add to Calendar
+            </button>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- 6. RSVP Call to Action Section -->
+      <section class="rsvp-cta-section" aria-label="RSVP Response">
+        <div class="rsvp-card">
+          <h2 class="section-title">Répondez S'il Vous Plaît</h2>
+          <p class="section-subtitle">Celebrate With Us</p>
+          <p class="rsvp-date-note">Kindly confirm attendance before September 25, 2026</p>
+
+          <div class="rsvp-button-pulse">
+            <button class="btn-gold" id="btn-open-rsvp" style="padding: 16px 28px; font-size: 0.9rem;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+              </svg>
+              R.S.V.P. &bull; Confirm Attendance
+            </button>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- Footer -->
+      <footer class="invitation-footer">
+        <div class="footer-monogram">AS</div>
+        <p class="footer-text">Ammar &amp; Sidra &bull; October 11, 2026</p>
+        <div class="ornament-divider" style="margin: 14px auto 0; max-width: 140px;">
+          <span class="ornament-line"></span>
+          <span class="ornament-diamond"></span>
+          <span class="ornament-line"></span>
+        </div>
+      </footer>
+
+    </article>
+
+  </main>
+
+
+  <!-- ====================================================================
+       INTERACTIVE RSVP MODAL
+       ==================================================================== -->
+  <div class="modal-overlay" id="rsvp-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title-text">
+    <div class="modal-card">
+      
+      <button class="modal-close-btn" id="modal-close-btn" aria-label="Close RSVP form">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
+      <!-- Form Content -->
+      <div id="rsvp-form-container">
+        <div class="modal-header">
+          <h3 class="modal-title" id="modal-title-text">R.S.V.P.</h3>
+          <p class="modal-subtitle">Ammar &amp; Sidra's Wedding Celebration</p>
+        </div>
+
+        <form id="rsvp-form">
+          <div class="form-group">
+            <label class="form-label" for="guest-name">Full Name</label>
+            <input type="text" id="guest-name" class="form-input" placeholder="e.g. Dawit &amp; Family" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Will You Attend?</label>
+            <div class="attendance-selector">
+              <div class="radio-pill">
+                <input type="radio" id="attending-yes" name="attendance" value="Attending" checked>
+                <label for="attending-yes" class="radio-pill-label">
+                  <span class="radio-pill-title">Joyfully Accepts</span>
+                  <span class="radio-pill-sub">Will be there</span>
+                </label>
+              </div>
+              <div class="radio-pill">
+                <input type="radio" id="attending-no" name="attendance" value="Decline">
+                <label for="attending-no" class="radio-pill-label">
+                  <span class="radio-pill-title">Regretfully Declines</span>
+                  <span class="radio-pill-sub">In our hearts</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group" id="guest-count-group">
+            <label class="form-label">Number of Guests</label>
+            <div class="guest-counter-wrapper">
+              <button type="button" class="counter-btn" id="btn-count-dec" aria-label="Decrease guests">&minus;</button>
+              <span class="counter-val" id="guest-count-val">1</span>
+              <button type="button" class="counter-btn" id="btn-count-inc" aria-label="Increase guests">&plus;</button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="guest-notes">Warm Wishes or Dietary Notes</label>
+            <textarea id="guest-notes" class="form-textarea" rows="2" placeholder="Leave a heartfelt message for Ammar &amp; Sidra..."></textarea>
+          </div>
+
+          <button type="submit" class="btn-gold" style="margin-top: 10px;">
+            Send RSVP Confirmation
+          </button>
+        </form>
+      </div>
+
+      <!-- Success Card (Shown after submit) -->
+      <div class="rsvp-success-card" id="rsvp-success">
+        <div class="success-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+        <h3 class="modal-title" style="margin-bottom: 8px;">Thank You!</h3>
+        <p class="modal-subtitle" id="success-message" style="margin-bottom: 20px; font-size: 0.85rem; line-height: 1.6;">
+          Your response has been registered with warmth. We cannot wait to celebrate together!
+        </p>
+        <button type="button" class="btn-outline-gold" id="btn-success-close">
+          Back to Invitation
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ====================================================================
+       PERSISTENT FLOATING MUSIC CONTROLLER
+       ==================================================================== -->
+  <div class="music-controller" id="music-controller" aria-label="Music Controls">
+    <div class="music-tooltip" id="music-tooltip">Music: Playing</div>
+    <button class="music-toggle-btn playing" id="music-toggle-btn" aria-label="Toggle wedding soundtrack">
+      <div class="equalizer-bars">
+        <div class="eq-bar"></div>
+        <div class="eq-bar"></div>
+        <div class="eq-bar"></div>
+        <div class="eq-bar"></div>
+      </div>
+      <svg class="music-off-icon" viewBox="0 0 24 24">
+        <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27l4.73 4.73H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
+      </svg>
+    </button>
+  </div>
+
+
+  <!-- ====================================================================
+       JAVASCRIPT LOGIC & 60FPS ENGINE
+       ==================================================================== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      
+      // 1. Audio Element & Smooth Fade-In Logic
+      const audio = document.getElementById('wedding-audio');
+      const musicBtn = document.getElementById('music-toggle-btn');
+      const musicTooltip = document.getElementById('music-tooltip');
+      let isAudioPlaying = false;
+      let fadeInterval = null;
+
+      function playMusicWithFadeIn() {
+        if (!audio) return;
+        audio.volume = 0;
+        const playPromise = audio.play();
+        if (playPromise !== undefined) {
+          playPromise.then(() => {
+            isAudioPlaying = true;
+            musicBtn.classList.remove('muted');
+            musicBtn.classList.add('playing');
+            musicTooltip.textContent = 'Music: Playing';
+            
+            // Smoothly ramp volume from 0 to 0.75 over 1.8s
+            clearInterval(fadeInterval);
+            let targetVol = 0.75;
+            let currentVol = 0;
+            fadeInterval = setInterval(() => {
+              currentVol += 0.05;
+              if (currentVol >= targetVol) {
+                audio.volume = targetVol;
+                clearInterval(fadeInterval);
+              } else {
+                audio.volume = currentVol;
+              }
+            }, 100);
+          }).catch(err => {
+            console.log('Audio autoplay blocked or user gesture required:', err);
+          });
+        }
+      }
+
+      function toggleMusic() {
+        if (!audio) return;
+        if (audio.paused) {
+          audio.play();
+          isAudioPlaying = true;
+          musicBtn.classList.remove('muted');
+          musicBtn.classList.add('playing');
+          musicTooltip.textContent = 'Music: Playing';
+        } else {
+          audio.pause();
+          isAudioPlaying = false;
+          musicBtn.classList.add('muted');
+          musicBtn.classList.remove('playing');
+          musicTooltip.textContent = 'Music: Paused';
+        }
+      }
+
+      musicBtn.addEventListener('click', toggleMusic);
+
+
+      // 2. Interactive Wax-Sealed Envelope Opening Experience
+      const waxSeal = document.getElementById('wax-seal');
+      const envelopeContainer = document.getElementById('envelope-container');
+      const envelopeScreen = document.getElementById('envelope-screen');
+      const invitationScreen = document.getElementById('invitation-screen');
+
+      let isOpened = false;
+
+      function openEnvelope() {
+        if (isOpened) return;
+        isOpened = true;
+
+        // 1. Trigger background acoustic guitar soundtrack with fade-in
+        playMusicWithFadeIn();
+
+        // 2. Add opening animation classes to envelope container
+        envelopeContainer.classList.add('opening');
+
+        // 3. Trigger burst of gold sparkle particles from seal center
+        spawnGoldBurst();
+
+        // 4. After 1.1s cubic-bezier flip outward, hide screen 1 and reveal screen 2
+        setTimeout(() => {
+          envelopeScreen.classList.add('opened');
+          invitationScreen.classList.add('revealed');
+        }, 1100);
+      }
+
+      waxSeal.addEventListener('click', openEnvelope);
+      envelopeContainer.addEventListener('click', (e) => {
+        // Also allow tapping anywhere on the envelope container to open
+        openEnvelope();
+      });
+
+
+      // 3. Live Countdown Timer to October 11, 2026, 19:00:00 (7:00 PM)
+      // Addis Ababa / East Africa Time (UTC+3)
+      const targetDate = new Date('2026-10-11T19:00:00+03:00').getTime();
+
+      const elDays = document.getElementById('cd-days');
+      const elHours = document.getElementById('cd-hours');
+      const elMinutes = document.getElementById('cd-minutes');
+      const elSeconds = document.getElementById('cd-seconds');
+
+      function updateCountdown() {
+        const now = new Date().getTime();
+        const difference = targetDate - now;
+
+        if (difference <= 0) {
+          elDays.textContent = '00';
+          elHours.textContent = '00';
+          elMinutes.textContent = '00';
+          elSeconds.textContent = '00';
+          return;
+        }
+
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+        elDays.textContent = String(days).padStart(2, '0');
+        elHours.textContent = String(hours).padStart(2, '0');
+        elMinutes.textContent = String(minutes).padStart(2, '0');
+        elSeconds.textContent = String(seconds).padStart(2, '0');
+      }
+
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+
+
+      // 4. Add to Calendar (.ics download feature)
+      const btnCalendar = document.getElementById('btn-add-calendar');
+      btnCalendar.addEventListener('click', () => {
+        const icsContent = 
+`BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Ammar and Sidra//Wedding Invitation//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:ammar-sidra-wedding-20261011@wedding.invitation
+DTSTAMP:20260922T190000Z
+DTSTART:20261011T130000Z
+DTEND:20261011T200000Z
+SUMMARY:Ammar & Sidra's Royal Wedding Celebration
+DESCRIPTION:Together with their families\\, Ammar & Sidra cordially invite you to celebrate their wedding union.
+LOCATION:Front of Hilltop School\\, Ashawa Meda
+STATUS:CONFIRMED
+END:VEVENT
+END:VCALENDAR`;
+
+        const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+        const link = document.createElement('a');
+        link.href = window.URL.createObjectURL(blob);
+        link.setAttribute('download', 'Ammar_and_Sidra_Wedding.ics');
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      });
+
+
+      // 5. Interactive RSVP Modal Logic
+      const modal = document.getElementById('rsvp-modal');
+      const openRsvpBtn = document.getElementById('btn-open-rsvp');
+      const closeRsvpBtn = document.getElementById('modal-close-btn');
+      const rsvpForm = document.getElementById('rsvp-form');
+      const formContainer = document.getElementById('rsvp-form-container');
+      const successCard = document.getElementById('rsvp-success');
+      const successMessage = document.getElementById('success-message');
+      const successCloseBtn = document.getElementById('btn-success-close');
+
+      const btnCountDec = document.getElementById('btn-count-dec');
+      const btnCountInc = document.getElementById('btn-count-inc');
+      const countVal = document.getElementById('guest-count-val');
+      const guestGroup = document.getElementById('guest-count-group');
+
+      let guestCount = 1;
+
+      // Guest Count Stepper
+      btnCountDec.addEventListener('click', () => {
+        if (guestCount > 1) {
+          guestCount--;
+          countVal.textContent = guestCount;
+        }
+      });
+
+      btnCountInc.addEventListener('click', () => {
+        if (guestCount < 10) {
+          guestCount++;
+          countVal.textContent = guestCount;
+        }
+      });
+
+      // Attendance change toggles guest counter visibility
+      const attendanceRadios = document.querySelectorAll('input[name="attendance"]');
+      attendanceRadios.forEach(radio => {
+        radio.addEventListener('change', (e) => {
+          if (e.target.value === 'Decline') {
+            guestGroup.style.display = 'none';
+          } else {
+            guestGroup.style.display = 'block';
+          }
+        });
+      });
+
+      // Open Modal
+      openRsvpBtn.addEventListener('click', () => {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+
+      // Close Modal
+      function closeModal() {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      closeRsvpBtn.addEventListener('click', closeModal);
+      successCloseBtn.addEventListener('click', () => {
+        closeModal();
+        setTimeout(() => {
+          formContainer.style.display = 'block';
+          successCard.style.display = 'none';
+          rsvpForm.reset();
+          guestCount = 1;
+          countVal.textContent = '1';
+        }, 400);
+      });
+
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          closeModal();
+        }
+      });
+
+      // Handle RSVP Form Submit
+      rsvpForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('guest-name').value.trim();
+        const attendance = document.querySelector('input[name="attendance"]:checked').value;
+
+        if (attendance === 'Attending') {
+          successMessage.textContent = `Honored ${name}, your attendance for ${guestCount} guest(s) has been joyfully reserved. We look forward to creating unforgettable memories with you on October 11, 2026!`;
+        } else {
+          successMessage.textContent = `Thank you, ${name}. We will miss you dearly in person and carry your warm prayers and blessings in our hearts.`;
+        }
+
+        formContainer.style.display = 'none';
+        successCard.style.display = 'block';
+        spawnGoldBurst();
+      });
+
+
+      // ====================================================================
+      // 6. 60FPS FLOATING GOLD DUST CANVAS PARTICLE SYSTEM
+      // ====================================================================
+      const canvas = document.getElementById('gold-particles');
+      const ctx = canvas.getContext('2d');
+
+      let width = canvas.width = window.innerWidth;
+      let height = canvas.height = window.innerHeight;
+
+      window.addEventListener('resize', () => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+      });
+
+      const particles = [];
+      const PARTICLE_COUNT = 65;
+
+      class GoldParticle {
+        constructor(isBurst = false, burstX = width / 2, burstY = height / 2) {
+          this.reset(isBurst, burstX, burstY);
+        }
+
+        reset(isBurst = false, burstX = width / 2, burstY = height / 2) {
+          if (isBurst) {
+            this.x = burstX;
+            this.y = burstY;
+            const angle = Math.random() * Math.PI * 2;
+            const speed = Math.random() * 6 + 2;
+            this.vx = Math.cos(angle) * speed;
+            this.vy = Math.sin(angle) * speed;
+            this.size = Math.random() * 3.5 + 1.5;
+            this.alpha = 1;
+            this.fade = Math.random() * 0.02 + 0.015;
+            this.isBurst = true;
+          } else {
+            this.x = Math.random() * width;
+            this.y = Math.random() * height;
+            this.vx = (Math.random() - 0.5) * 0.45;
+            this.vy = -(Math.random() * 0.55 + 0.25);
+            this.size = Math.random() * 2.2 + 0.8;
+            this.alpha = Math.random() * 0.7 + 0.2;
+            this.twinkleSpeed = Math.random() * 0.025 + 0.01;
+            this.twinkleFactor = Math.random() * Math.PI;
+            this.isBurst = false;
+          }
+        }
+
+        update() {
+          if (this.isBurst) {
+            this.x += this.vx;
+            this.y += this.vy;
+            this.vx *= 0.95;
+            this.vy *= 0.95;
+            this.alpha -= this.fade;
+          } else {
+            this.x += this.vx;
+            this.y += this.vy;
+            this.twinkleFactor += this.twinkleSpeed;
+            this.currentAlpha = this.alpha * (0.6 + 0.4 * Math.sin(this.twinkleFactor));
+
+            // Wrap around edges
+            if (this.y < -10) this.y = height + 10;
+            if (this.x < -10) this.x = width + 10;
+            if (this.x > width + 10) this.x = -10;
+          }
+        }
+
+        draw() {
+          const a = this.isBurst ? Math.max(0, this.alpha) : this.currentAlpha;
+          if (a <= 0) return;
+
+          ctx.save();
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+
+          // Golden Shimmer Radial Fill
+          const grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size);
+          grad.addColorStop(0, `rgba(255, 248, 220, ${a})`);
+          grad.addColorStop(0.5, `rgba(229, 201, 137, ${a * 0.8})`);
+          grad.addColorStop(1, `rgba(197, 160, 89, 0)`);
+
+          ctx.fillStyle = grad;
+          ctx.shadowBlur = 8;
+          ctx.shadowColor = `rgba(229, 201, 137, ${a})`;
+          ctx.fill();
+          ctx.restore();
+        }
+      }
+
+      // Initialize ambient particles
+      for (let i = 0; i < PARTICLE_COUNT; i++) {
+        particles.push(new GoldParticle(false));
+      }
+
+      // Burst Particles for Wax Seal opening and RSVP confirmation
+      const burstParticles = [];
+      function spawnGoldBurst(bx = width / 2, by = height / 2) {
+        for (let i = 0; i < 45; i++) {
+          burstParticles.push(new GoldParticle(true, bx, by));
+        }
+      }
+
+      // Animation Loop
+      function renderParticles() {
+        ctx.clearRect(0, 0, width, height);
+
+        // Ambient drifting dust
+        for (let i = 0; i < particles.length; i++) {
+          particles[i].update();
+          particles[i].draw();
+        }
+
+        // Burst particles
+        for (let i = burstParticles.length - 1; i >= 0; i--) {
+          const bp = burstParticles[i];
+          bp.update();
+          bp.draw();
+          if (bp.alpha <= 0) {
+            burstParticles.splice(i, 1);
+          }
+        }
+
+        requestAnimationFrame(renderParticles);
+      }
+
+      renderParticles();
+
+    });
+  </script>
+</body>
+</html>
