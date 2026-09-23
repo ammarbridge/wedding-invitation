@@ -113,6 +113,7 @@
       left: 0;
       width: 100%;
       height: 100%;
+      height: 100dvh;
       z-index: 100;
       display: flex;
       justify-content: center;
@@ -120,6 +121,7 @@
       background: radial-gradient(circle at center, #242220 0%, #121110 80%, #070707 100%);
       perspective: 1200px;
       transition: opacity 1s var(--ease-luxury), visibility 1s var(--ease-luxury);
+      overflow: hidden;
     }
 
     .envelope-screen.opened {
@@ -130,13 +132,22 @@
 
     .envelope-container {
       position: relative;
-      width: 90%;
-      max-width: 400px;
-      aspect-ratio: 501 / 698;
-      border-radius: 20px;
-      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.9), 0 0 60px rgba(197, 160, 89, 0.22);
+      width: 100%;
+      height: 100%;
+      height: 100dvh;
+      max-width: 100%;
+      border-radius: 0;
+      box-shadow: none;
       transform-style: preserve-3d;
       cursor: pointer;
+    }
+
+    @media (min-width: 600px) {
+      .envelope-container {
+        max-width: 480px;
+        height: 100%;
+        max-height: 100dvh;
+      }
     }
 
     /* Ambient glow behind envelope */
@@ -172,7 +183,7 @@
       will-change: transform, opacity;
       transform-style: preserve-3d;
       backface-visibility: hidden;
-      border-radius: 20px;
+      border-radius: 0;
     }
 
     /* Flap 1: Top Triangular Flap */
@@ -280,19 +291,9 @@
       opacity: 0;
     }
 
-    /* Tap to Open Caption */
+    /* Tap to Open Caption - Hidden per user request */
     .tap-to-open {
-      position: absolute;
-      bottom: -65px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-      white-space: nowrap;
-      pointer-events: none;
-      transition: opacity 0.5s ease;
+      display: none !important;
     }
 
     .tap-text {
@@ -1137,13 +1138,7 @@
        6. FLOATING MUSIC CONTROLLER (Persistent Bottom-Right)
        ========================================================================== */
     .music-controller {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      z-index: 150;
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      display: none !important;
     }
 
     .music-toggle-btn {
@@ -1237,29 +1232,9 @@
       transform: translateX(0);
     }
 
-    /* Mode Switch Floating Pill */
+    /* Mode Switch Floating Pill - Hidden per user request */
     .mode-switch-pill {
-      position: fixed;
-      top: 18px;
-      right: 18px;
-      z-index: 160;
-      background: rgba(26, 25, 24, 0.85);
-      border: 1px solid rgba(197, 160, 89, 0.45);
-      border-radius: 30px;
-      padding: 6px 14px;
-      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      text-decoration: none;
-      color: var(--gold-light);
-      font-family: var(--font-heading);
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 1px;
-      transition: all 0.3s ease;
+      display: none !important;
     }
 
     .mode-switch-pill:hover {
@@ -1424,7 +1399,7 @@
             <div class="timeline-node">
               <div class="timeline-node-inner"></div>
             </div>
-            <span class="timeline-time-badge">16:00</span>
+            <span class="timeline-time-badge">13:00</span>
             <h3 class="timeline-title">Welcome Reception</h3>
             <p class="timeline-desc">
               Welcoming honored guests with warm hospitality, traditional aromas, chilled refreshments, and ambient live melodies.
@@ -1436,7 +1411,7 @@
             <div class="timeline-node">
               <div class="timeline-node-inner"></div>
             </div>
-            <span class="timeline-time-badge">17:00</span>
+            <span class="timeline-time-badge">14:00</span>
             <h3 class="timeline-title">Nikah Ceremony &amp; Vows</h3>
             <p class="timeline-desc">
               The sacred matrimonial solemnization, exchange of earnest vows, and shared congregational supplications.
@@ -1448,7 +1423,7 @@
             <div class="timeline-node">
               <div class="timeline-node-inner"></div>
             </div>
-            <span class="timeline-time-badge">19:00</span>
+            <span class="timeline-time-badge">16:00</span>
             <h3 class="timeline-title">Dinner &amp; Banquet</h3>
             <p class="timeline-desc">
               An opulent royal dinner banquet featuring exquisite multi-course delicacies, celebratory toasts, and heartfelt words.
@@ -1460,7 +1435,7 @@
             <div class="timeline-node">
               <div class="timeline-node-inner"></div>
             </div>
-            <span class="timeline-time-badge">20:30</span>
+            <span class="timeline-time-badge">17:30</span>
             <h3 class="timeline-title">Celebration &amp; Party</h3>
             <p class="timeline-desc">
               Joyous music, jubilant dancing, sweet dessert confections, and unforgettable memories honoring Ammar &amp; Sidra.
@@ -1492,7 +1467,7 @@
 
           <div class="venue-actions">
             <!-- Google Maps Directions Link -->
-            <a href="https://www.google.com/maps/search/?api=1&query=Front+of+Hilltop+School,+Ashawa+Meda" 
+            <a href="https://maps.app.goo.gl/auaz7gAb7kpMe6w36?g_st=ac" 
                target="_blank" 
                rel="noopener noreferrer" 
                class="btn-gold" 
@@ -1753,9 +1728,9 @@
       });
 
 
-      // 3. Live Countdown Timer to October 11, 2026, 19:00:00 (7:00 PM)
+      // 3. Live Countdown Timer to October 11, 2026, 13:00:00 (1:00 PM)
       // Addis Ababa / East Africa Time (UTC+3)
-      const targetDate = new Date('2026-10-11T19:00:00+03:00').getTime();
+      const targetDate = new Date('2026-10-11T13:00:00+03:00').getTime();
 
       const elDays = document.getElementById('cd-days');
       const elHours = document.getElementById('cd-hours');
@@ -1801,8 +1776,8 @@ METHOD:PUBLISH
 BEGIN:VEVENT
 UID:ammar-sidra-wedding-20261011@wedding.invitation
 DTSTAMP:20260922T190000Z
-DTSTART:20261011T130000Z
-DTEND:20261011T200000Z
+DTSTART:20261011T100000Z
+DTEND:20261011T170000Z
 SUMMARY:Ammar & Sidra's Royal Wedding Celebration
 DESCRIPTION:Together with their families\\, Ammar & Sidra cordially invite you to celebrate their wedding union.
 LOCATION:Front of Hilltop School\\, Ashawa Meda
